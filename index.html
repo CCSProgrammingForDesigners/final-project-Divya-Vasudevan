@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Photobooth - Final Project</title>
+    <link rel="stylesheet" href="styles/app.css">
+    <link rel="stylesheet" href="styles/animate.css">
+    <script src="scripts/app.js" defer></script>
+</head>
+
+<body>
+    <div id="screenBorder">
+        <article class="collage show" id="collage">
+            <section id="collage_content">
+                <div class="photos"></div>
+                <div class="photos"></div>
+                <div id="heading">
+                    <h3>PHOTOBOOTH</h3>
+                    <h2>X marks the spot</h2>
+                </div>
+                <div class="photos"></div>
+                <div class="photos"></div>
+            </section>
+        </article>
+        <article class="photobooth hide" id="photobooth">
+            <section id="photobooth_content">
+                <div id="photo">
+                    <video id="myVideo" width="100%" height="100%" preload autoplay loop muted></video></div>
+                <div>
+                    <p id="text_prompt" class="animated"></p>
+                </div>
+            </section>
+        </article>
+    </div>
+
+
+    <ul class="buttonSims">
+        <li class="collage show" id="detectPerson">Detect person</li>
+        <li class="photobooth hide" id="removePerson">Person Moves away</li>
+    </ul>
+</body>
+
+</html>
