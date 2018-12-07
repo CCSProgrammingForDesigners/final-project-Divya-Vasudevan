@@ -34,10 +34,22 @@ const displayPhotobooth = () => {
         collageElement.classList.remove("show");
     }
     //turn on camera
-    const photo = takePhoto();
+    navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: false
+        })
+        .then(function (stream) {
+            var video = document.getElementById("myVideo");
+            video.srcObject = stream;
+            video.play();
+            startCountdown();
+        })
+        .catch(function (err) {
+            alert("there was an error " + err)
+        });
 }
 
-const takePhoto = () => {
+const startCountdown = () => {
     const text = document.getElementById("text_prompt");
     text.innerHTML = "STRIKE A POSE !!"; //tell this out loud too to attract attention
     text.classList.add("zoomIn");
@@ -65,40 +77,54 @@ const takePhoto = () => {
     }, 4020);
     setTimeout(() => {
         text.classList.remove("zoomIn");
-        //https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
-        text.innerHTML = "PICTURE TAKEN"; //take pic after countdown
-        const photo = "photo location"; //photo file location
-        //store photo 
-        showPhoto(photo);
+        takePic(); //take the picture
+        text.innerHTML = "PICTURE TAKEN";
+        backToCollage();
     }, 5000);
 
-    /*const timeoutID = window.setTimeout(() => {
-        if (getTimeout === 2000) {
-            text.classList.remove("zoomIn");
-        }
-        text.innerHTML = countdown;
-        //text.classList.add("zoomIn");
-        countdown--;
-    }, 2000);
-
-    setTimeout(() => {
-        clearInterval(timeoutID);
-        text.innerHTML = "PICTURE TAKEN";
-        //take pic after countdown
-        const photo = ""; //photo file location
-        //store photo
-        return photo;
-    }, 7999);*/
     /*detect colors worn by person. if dark then pick one of the black ones, if bright 
     pick one of the red cards. Or just pick the joker no matter the color*/
 }
 
-const showPhoto = (photo) => {
-    //show their photo for 3 secs
-    console.log(photo);
+const backToCollage = () => {
     setTimeout(() => {
         displayCollage(); //back to collage page
-    }, 3000);
+        //reset ouput to empty for next person
+        const photo = document.getElementById('photoOutput');
+        photo.setAttribute('src', "");
+    }, 5000);
 }
+
+/********************************photo func from github*******************************/
+takePic = () => {
+
+    let width = 320;
+    let height = 240;
+    const video = document.getElementById('myVideo');
+    const canvas = document.getElementById('canvas');
+    const photo = document.getElementById('photoOutput');
+
+    navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: false
+        })
+        .then((stream) => {
+            video.srcObject = stream;
+            video.play();
+        })
+        .catch((err) => {
+            console.log("An error occured! " + err);
+        });
+
+    var context = canvas.getContext('2d');
+    canvas.width = width;
+    canvas.height = height;
+    context.drawImage(video, 0, 0, width, height);
+
+    let data = canvas.toDataURL('image/png');
+    photo.setAttribute('src', data);
+    //save photo to folder
+}
+/***************************************************************/
 
 detectPeople();

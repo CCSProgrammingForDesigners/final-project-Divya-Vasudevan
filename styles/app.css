@@ -28,6 +28,7 @@ body {
 #heading {
     flex: 1;
     border: solid 1px black;
+    text-align: center;
 }
 
 #photobooth {
@@ -47,6 +48,34 @@ body {
 #text_prompt {
     font-size: 50px
 }
+
+#canvas {
+    display: none;
+}
+
+#myVideo {
+    border: 1px solid black;
+    box-shadow: 2px 2px 3px black;
+    width: 320px;
+    height: 240px;
+}
+
+#photoOutput {
+    border: 1px solid black;
+    box-shadow: 2px 2px 3px black;
+    width: 320px;
+    height: 240px;
+}
+
+/*.output {
+    width: 340px;
+    display: inline-block;
+}
+
+.camera {
+    width: 340px;
+    display: inline-block;
+}*/
 
 /**************************************************************/
 .buttonSims {
