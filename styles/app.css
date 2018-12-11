@@ -22,6 +22,7 @@ body {
 
 .photos {
     flex: 1;
+    display: flex;
     border: solid 1px black;
 }
 
@@ -67,15 +68,17 @@ body {
     height: 240px;
 }
 
-/*.output {
-    width: 340px;
-    display: inline-block;
+.small_img {
+    width: 25%;
+    height: 30px;
+    border: 1px solid black;
 }
 
-.camera {
-    width: 340px;
-    display: inline-block;
-}*/
+.big_img {
+    width: 25%;
+    height: 30px;
+    border: 1px solid black;
+}
 
 /**************************************************************/
 .buttonSims {

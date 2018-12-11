@@ -123,8 +123,21 @@ takePic = () => {
 
     let data = canvas.toDataURL('image/png');
     photo.setAttribute('src', data);
-    //save photo to folder
+    //console.log(data);
+    savePhoto(data);
 }
 /***************************************************************/
+
+const generateRandomKey = () => {
+    return '_' + Math.random().toString(36).substr(2, 9);
+}
+
+const savePhoto = (image) => {
+    //save photo to local storage
+    localStorage.setItem(generateRandomKey(), image);
+    // https://stackoverflow.com/questions/19183180/how-to-save-an-image-to-localstorage-and-display-it-on-the-next-page
+    //const photo = document.getElementById('photoOutput');
+    //photo.setAttribute('src', localStorage.getItem(localStorage.key(localStorage.length - 1)));
+}
 
 detectPeople();
